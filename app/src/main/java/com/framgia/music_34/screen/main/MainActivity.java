@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import com.framgia.music_34.R;
+import com.framgia.music_34.screen.local.LocalMusicFragment;
 import com.framgia.music_34.screen.stream.StreamMusicFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -93,7 +94,7 @@ public class MainActivity extends AppCompatActivity
                 setFragment(StreamMusicFragment.newInstance());
                 break;
             case R.id.nav_local_music:
-                //Todo update later
+                setFragment(LocalMusicFragment.newInstance());
                 break;
             case R.id.nav_downloaded:
                 //Todo update later
