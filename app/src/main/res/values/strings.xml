@@ -17,4 +17,6 @@
 
     <string name="hotandnew">HOT&amp;NEW</string>
     <string name="top">TOP</string>
+    <string name="shuffle_all">SHUFFLE ALL</string>
+    <string name="item_track_decoration">-</string>
 </resources>
