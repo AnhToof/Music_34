@@ -8,6 +8,7 @@ import android.support.v4.app.NotificationCompat;
 import android.widget.RemoteViews;
 import com.framgia.music_34.R;
 import com.framgia.music_34.screen.main.MainActivity;
+import com.framgia.music_34.utils.ActionNotification;
 import com.framgia.music_34.utils.Constants;
 
 public class NotificationGenerator {
@@ -32,10 +33,10 @@ public class NotificationGenerator {
     }
 
     private static void setListeners(RemoteViews expandedView, Context context) {
-        Intent previousIntent = new Intent(Constants.TypeAction.ACTION_PREVIOUS);
-        Intent nextIntent = new Intent(Constants.TypeAction.ACTION_NEXT);
-        Intent playIntent = new Intent(Constants.TypeAction.ACTION_PLAY);
-        Intent pauseIntent = new Intent(Constants.TypeAction.ACTION_PAUSE);
+        Intent previousIntent = new Intent(ActionNotification.ACTION_PREVIOUS);
+        Intent nextIntent = new Intent(ActionNotification.ACTION_NEXT);
+        Intent playIntent = new Intent(ActionNotification.ACTION_PLAY);
+        Intent pauseIntent = new Intent(ActionNotification.ACTION_PAUSE);
 
         PendingIntent previousPendingIntent = PendingIntent.getBroadcast(context, 0, previousIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);

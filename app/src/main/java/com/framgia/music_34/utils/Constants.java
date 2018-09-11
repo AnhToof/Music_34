@@ -2,8 +2,15 @@ package com.framgia.music_34.utils;
 
 import android.support.annotation.IntDef;
 import android.support.annotation.StringDef;
+import com.framgia.music_34.BuildConfig;
 
 public class Constants {
+
+    private static final String BASE_URL = "https://api-v2.soundcloud.com/charts?";
+    private static final String KIND_TOP = "top/";
+    private static final String KIND_TRENDING = "trending";
+    private static final String GENRES = "&genres=";
+    private static final String CLIENT_ID = "?client_id=" + BuildConfig.API_KEY;
 
     @IntDef({ TypeMenuIndex.MENU_INDEX_HOT_NEW, TypeMenuIndex.MENU_INDEX_TOP })
     public @interface TypeMenuIndex {
@@ -15,13 +22,5 @@ public class Constants {
     public @interface TypeMenu {
         String MENU_HOT_NEW = "HOT&NEW";
         String MENU_TOP = "TOP";
-    }
-
-    @StringDef
-    public @interface TypeAction {
-        String ACTION_PREVIOUS = "com.framgia.music_34.previous";
-        String ACTION_NEXT = "com.framgia.music_34.next";
-        String ACTION_PLAY = "com.framgia.music_34.play";
-        String ACTION_PAUSE = "com.framgia.music_34.pause";
     }
 }
