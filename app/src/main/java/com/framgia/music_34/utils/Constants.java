@@ -16,4 +16,12 @@ public class Constants {
         String MENU_HOT_NEW = "HOT&NEW";
         String MENU_TOP = "TOP";
     }
+
+    @StringDef
+    public @interface TypeAction {
+        String ACTION_PREVIOUS = "com.framgia.music_34.previous";
+        String ACTION_NEXT = "com.framgia.music_34.next";
+        String ACTION_PLAY = "com.framgia.music_34.play";
+        String ACTION_PAUSE = "com.framgia.music_34.pause";
+    }
 }
