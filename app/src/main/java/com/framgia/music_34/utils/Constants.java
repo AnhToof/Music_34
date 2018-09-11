@@ -6,11 +6,11 @@ import com.framgia.music_34.BuildConfig;
 
 public class Constants {
 
-    private static final String BASE_URL = "https://api-v2.soundcloud.com/charts?";
-    private static final String KIND_TOP = "top/";
-    private static final String KIND_TRENDING = "trending";
-    private static final String GENRES = "&genres=";
-    private static final String CLIENT_ID = "?client_id=" + BuildConfig.API_KEY;
+    public static final String BASE_URL = "https://api-v2.soundcloud.com/charts?";
+    public static final String KIND_TOP = "top/";
+    public static final String KIND_TRENDING = "trending";
+    public static final String GENRES = "&genres=";
+    public static final String CLIENT_ID = "?client_id=" + BuildConfig.API_KEY;
 
     @IntDef({ TypeMenuIndex.MENU_INDEX_HOT_NEW, TypeMenuIndex.MENU_INDEX_TOP })
     public @interface TypeMenuIndex {
