@@ -19,4 +19,7 @@
     <string name="top">TOP</string>
     <string name="shuffle_all">SHUFFLE ALL</string>
     <string name="item_track_decoration">-</string>
+    
+    <string name="error_local_load_file">Something was wrong. Please try again!</string>
+    <string name="error_local_empty_library">No media found</string>
 </resources>
