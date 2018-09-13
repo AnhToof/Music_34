@@ -34,6 +34,11 @@ public class TrackRepository {
         mRemoteDataSource.getListTrack(genres, kind, listener);
     }
 
+    public void getRemoteListTrackFull(String genres, String kind,
+            OnFetchDataJsonListener<List<Track>> listOnFetchDataJsonListener) {
+        mRemoteDataSource.getListTrackFull(genres, kind, listOnFetchDataJsonListener);
+    }
+
     public void getLocalListTrack(OnGetDataListener<Track> listener) {
         mLocalDataSource.getData(listener);
     }

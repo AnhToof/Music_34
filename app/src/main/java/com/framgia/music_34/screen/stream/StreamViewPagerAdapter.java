@@ -4,8 +4,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import com.framgia.music_34.screen.stream.hotnew.HotNewFragment;
-import com.framgia.music_34.screen.stream.top.TopFragment;
+import com.framgia.music_34.screen.stream.trending.TrendingChartFragment;
+import com.framgia.music_34.screen.stream.top.TopChartFragment;
 import com.framgia.music_34.utils.Constants;
 
 public class StreamViewPagerAdapter extends FragmentPagerAdapter {
@@ -20,9 +20,9 @@ public class StreamViewPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case Constants.TypeMenuIndex.MENU_INDEX_HOT_NEW:
-                return HotNewFragment.newInstance();
+                return TrendingChartFragment.newInstance();
             case Constants.TypeMenuIndex.MENU_INDEX_TOP:
-                return TopFragment.newInstance();
+                return TopChartFragment.newInstance();
         }
         return null;
     }

@@ -22,4 +22,5 @@
     
     <string name="error_local_load_file">Something was wrong. Please try again!</string>
     <string name="error_local_empty_library">No media found</string>
+    <string name="play_all">PLAY ALL</string>
 </resources>

@@ -1,6 +1,9 @@
 package com.framgia.music_34.data.model;
 
-public class Track {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Track implements Parcelable {
 
     private int mId;
     private String mTitle;
@@ -26,6 +29,30 @@ public class Track {
         mStreamUrl = trackBuilder.mStreamUrl;
         mArtist = trackBuilder.mArtist;
     }
+
+    protected Track(Parcel in) {
+        mId = in.readInt();
+        mTitle = in.readString();
+        mUri = in.readString();
+        mArtworkUrl = in.readString();
+        mDuration = in.readInt();
+        mDownloadable = in.readByte() != 0;
+        mDownloadUrl = in.readString();
+        mStreamUrl = in.readString();
+        mArtist = in.readString();
+    }
+
+    public static final Creator<Track> CREATOR = new Creator<Track>() {
+        @Override
+        public Track createFromParcel(Parcel in) {
+            return new Track(in);
+        }
+
+        @Override
+        public Track[] newArray(int size) {
+            return new Track[size];
+        }
+    };
 
     public int getId() {
         return mId;
@@ -99,6 +126,24 @@ public class Track {
         mArtist = artist;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeInt(mId);
+        parcel.writeString(mTitle);
+        parcel.writeString(mUri);
+        parcel.writeString(mArtworkUrl);
+        parcel.writeInt(mDuration);
+        parcel.writeByte((byte) (mDownloadable ? 1 : 0));
+        parcel.writeString(mDownloadUrl);
+        parcel.writeString(mStreamUrl);
+        parcel.writeString(mArtist);
+    }
+
     public static class TrackBuilder {
         private int mId;
         private String mTitle;
@@ -111,25 +156,6 @@ public class Track {
         private String mArtist;
 
         public TrackBuilder() {
-        }
-
-        public TrackBuilder(String title, String url, int duration, String artist) {
-            mTitle = title;
-            mDuration = duration;
-            mArtist = artist;
-            mStreamUrl = url;
-        }
-
-        public TrackBuilder(int id, String title, String uri, String artworkUrl, int duration,
-                boolean downloadable, String downloadUrl, String streamUrl) {
-            mId = id;
-            mTitle = title;
-            mUri = uri;
-            mArtworkUrl = artworkUrl;
-            mDuration = duration;
-            mDownloadable = downloadable;
-            mDownloadUrl = downloadUrl;
-            mStreamUrl = streamUrl;
         }
 
         public TrackBuilder id(int id) {
@@ -183,7 +209,8 @@ public class Track {
     }
 
     public final class TrackEntry {
-        public static final String TRACK = "collection";
+        public static final String COLLECTION = "collection";
+        public static final String TRACK = "track";
         public static final String ID = "id";
         public static final String TITLE = "title";
         public static final String URI = "uri";

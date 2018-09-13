@@ -20,10 +20,37 @@ public class TrackRemoteDataSource implements TrackDataSource.RemoteDataSource {
         return sInstance;
     }
 
+    private String setUrl(String kind, String genres, String limit) {
+        return Constants.BASE_URL + kind + Constants.GENRES + genres + Constants.CLIENT_ID + limit;
+    }
+
     @Override
     public void getListTrack(String genres, String kind,
             final OnFetchDataJsonListener<List<Track>> listener) {
-        String url = Constants.BASE_URL + kind + Constants.CLIENT_ID + Constants.GENRES + genres;
+        String url = setUrl(kind, genres, "");
+        new GetJsonFromUrl(new OnFetchDataTemp() {
+            @Override
+            public void onSuccess(String data) {
+                try {
+                    JSONObject jsonObject = new JSONObject(data);
+                    List<Track> trackList = new ParseDataWithJson().parseJsonToData(jsonObject);
+                    listener.onSuccess(trackList);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onError(Exception e) {
+                listener.onError(e);
+            }
+        }).execute(url);
+    }
+
+    @Override
+    public void getListTrackFull(String genres, String kind,
+            final OnFetchDataJsonListener<List<Track>> listener) {
+        String url = setUrl(kind, genres, Constants.LIMIT);
         new GetJsonFromUrl(new OnFetchDataTemp() {
             @Override
             public void onSuccess(String data) {

@@ -16,6 +16,9 @@ public interface TrackDataSource {
         void getListTrack(String genres, String kind,
                 OnFetchDataJsonListener<List<Track>> listener);
 
+        void getListTrackFull(String genres, String kind,
+                OnFetchDataJsonListener<List<Track>> listener);
+
         void getTrack(String uri, OnFetchDataJsonListener<Track> listener);
     }
 }

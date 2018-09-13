@@ -4,7 +4,7 @@
     android:id="@+id/recycler_genres"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".screen.stream.hotnew.HotNewFragment"
+    tools:context=".screen.stream.trending.TrendingChartFragment"
     >
 
 </android.support.v7.widget.RecyclerView>
