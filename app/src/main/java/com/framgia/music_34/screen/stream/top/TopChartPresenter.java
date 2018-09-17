@@ -59,7 +59,7 @@ public class TopChartPresenter implements TopChartContract.Presenter {
         for (int i = 0; i < mTitleGenres.size(); i++) {
             final String title = mTitleGenres.get(i);
             final String genresParam = mGenresPath.get(i);
-            mRepository.getRemoteListTrack(genresParam, Constants.KIND_TOP,
+            mRepository.getRemoteListTrack(genresParam, Constants.KIND_TOP, "",
                     new OnFetchDataJsonListener<List<Track>>() {
                         @Override
                         public void onSuccess(List<Track> data) {
