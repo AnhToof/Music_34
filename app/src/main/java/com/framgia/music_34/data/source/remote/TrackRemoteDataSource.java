@@ -48,9 +48,9 @@ public class TrackRemoteDataSource implements TrackDataSource.RemoteDataSource {
     }
 
     @Override
-    public void getListTrackFull(String genres, String kind,
+    public void getListTrackMore(String genres, String kind, String limit,
             final OnFetchDataJsonListener<List<Track>> listener) {
-        String url = setUrl(kind, genres, Constants.LIMIT);
+        String url = setUrl(kind, genres, limit);
         new GetJsonFromUrl(new OnFetchDataTemp() {
             @Override
             public void onSuccess(String data) {
