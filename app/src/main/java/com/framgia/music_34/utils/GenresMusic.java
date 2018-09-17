@@ -7,10 +7,11 @@ import android.support.annotation.StringDef;
         GenresMusic.AMBIENT, GenresMusic.CLASSICAL, GenresMusic.COUNTRY
 })
 public @interface GenresMusic {
-    String ALL_MUSIC = "all-music";
-    String ALL_AUDIO = "all-audio";
-    String ALTERNATIVE_ROCK = "alternativerock";
-    String AMBIENT = "ambient";
-    String CLASSICAL = "classical";
-    String COUNTRY = "country";
+    String BASE_GENRES = "soundcloud:genres:";
+    String ALL_MUSIC = BASE_GENRES + "all-music&";
+    String ALL_AUDIO = BASE_GENRES + "all-audio&";
+    String ALTERNATIVE_ROCK = BASE_GENRES + "alternativerock&";
+    String AMBIENT = BASE_GENRES + "ambient&";
+    String CLASSICAL = BASE_GENRES + "classical&";
+    String COUNTRY = BASE_GENRES + "country&";
 }

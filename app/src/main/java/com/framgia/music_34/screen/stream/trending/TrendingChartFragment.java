@@ -1,4 +1,4 @@
-package com.framgia.music_34.screen.stream.hotnew;
+package com.framgia.music_34.screen.stream.trending;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,18 +12,18 @@ import com.framgia.music_34.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class HotNewFragment extends Fragment {
+public class TrendingChartFragment extends Fragment {
 
     private RecyclerView mRecyclerView;
 
-    public static HotNewFragment newInstance() {
-        return new HotNewFragment();
+    public static TrendingChartFragment newInstance() {
+        return new TrendingChartFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_hot_new, container, false);
+        View view = inflater.inflate(R.layout.fragment_trending, container, false);
         initView(view);
         return view;
     }

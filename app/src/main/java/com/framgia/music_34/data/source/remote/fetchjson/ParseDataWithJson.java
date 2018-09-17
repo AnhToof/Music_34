@@ -38,11 +38,13 @@ public class ParseDataWithJson {
 
     public List<Track> parseJsonToData(JSONObject jsonObject) {
         List<Track> trackList = new ArrayList<>();
+
         try {
-            JSONArray jsonArray = jsonObject.getJSONArray(Track.TrackEntry.TRACK);
+            JSONArray jsonArray = jsonObject.getJSONArray(Track.TrackEntry.COLLECTION);
             for (int i = 0; i < jsonArray.length(); i++) {
                 JSONObject trackJson = jsonArray.getJSONObject(i);
-                Track track = parseJsonToObject(trackJson);
+                JSONObject trackDetailJson = trackJson.getJSONObject(Track.TrackEntry.TRACK);
+                Track track = parseJsonToObject(trackDetailJson);
                 trackList.add(track);
             }
         } catch (JSONException e) {
@@ -62,11 +64,11 @@ public class ParseDataWithJson {
                     .id(jsonObject.getInt(Track.TrackEntry.ID))
                     .title(jsonObject.getString(Track.TrackEntry.TITLE))
                     .uri(jsonObject.getString(Track.TrackEntry.URI))
-                    .streamUrl(jsonObject.getString(Track.TrackEntry.STREAM_URL))
                     .build();
         } catch (JSONException e) {
             e.printStackTrace();
         }
+
         return track;
     }
 }
