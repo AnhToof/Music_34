@@ -16,24 +16,17 @@ import com.framgia.music_34.data.source.TrackRepository;
 import com.framgia.music_34.data.source.local.GetDataLocal;
 import com.framgia.music_34.data.source.local.TrackLocalDataSource;
 import com.framgia.music_34.data.source.remote.TrackRemoteDataSource;
+import com.framgia.music_34.screen.stream.load_more.LoadMoreDialogFragment;
 import com.framgia.music_34.screen.stream.top.adapter.TopChartGenresAdapter;
-import com.framgia.music_34.screen.stream.tracks_dialog.TracksFullScreenDialog;
 import com.framgia.music_34.utils.OnItemRecyclerViewClickListener;
-import com.framgia.music_34.utils.OnItemRecyclerViewClickListenerSub;
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class TopChartFragment extends Fragment
-        implements TopChartContract.View, OnItemRecyclerViewClickListener<Genres>,
-        OnItemRecyclerViewClickListenerSub<Track> {
+        implements TopChartContract.View, OnItemRecyclerViewClickListener {
 
-    public static final String TAG = TopChartFragment.class.getName();
-    private RecyclerView mRecyclerView;
     private TopChartGenresAdapter mAdapter;
-    private TrackRepository mRepository;
-    private TopChartContract.Presenter mPresenter;
-    private TracksFullScreenDialog mDialog;
 
     public static TopChartFragment newInstance() {
         return new TopChartFragment();
@@ -49,42 +42,26 @@ public class TopChartFragment extends Fragment
     }
 
     private void initView(View view) {
-        mRecyclerView = view.findViewById(R.id.recycler_genres);
-        mRecyclerView.setHasFixedSize(true);
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_genres);
+        recyclerView.setHasFixedSize(true);
         mAdapter = new TopChartGenresAdapter(getContext());
-        mRecyclerView.setAdapter(mAdapter);
+        recyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemRecyclerViewClickListener(this);
-        mAdapter.setOnItemRecyclerViewClickListenerSub(this);
+        mAdapter.setListenerTrack(this);
     }
 
     private void initData() {
-        mRepository = TrackRepository.getsInstance(TrackRemoteDataSource.getsInstance(),
-                TrackLocalDataSource.getsInstance(new GetDataLocal(getContext())));
-        mPresenter = new TopChartPresenter(mRepository);
-        mPresenter.setView(this);
-        mPresenter.getRemoteListTrack();
-    }
-
-    @Override
-    public void onItemClickListener(Genres item, int position) {
-        mPresenter.getRemoteListTrackFull(item);
-    }
-
-    @Override
-    public void onItemClickListenerSub(Track item, int position) {
-        Toast.makeText(getContext(), item.getTitle(), Toast.LENGTH_LONG).show();
+        TrackRepository repository =
+                TrackRepository.getsInstance(TrackRemoteDataSource.getsInstance(),
+                        TrackLocalDataSource.getsInstance(new GetDataLocal(getContext())));
+        TopChartContract.Presenter presenter = new TopChartPresenter(repository);
+        presenter.setView(this);
+        presenter.getListTrack();
     }
 
     @Override
     public void onFetchAllListGenresSuccess(Genres genres) {
         mAdapter.addGenres(genres);
-    }
-
-    @Override
-    public void onFetchListGenresSuccess(Genres genres) {
-        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-        mDialog = TracksFullScreenDialog.newInstance(genres);
-        mDialog.show(fragmentTransaction, TracksFullScreenDialog.TAG);
     }
 
     @Override
@@ -95,5 +72,19 @@ public class TopChartFragment extends Fragment
     @Override
     public void onError(Exception e) {
         Toast.makeText(getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onItemClickListener(Object item, int position) {
+        if (item instanceof Track) {
+            Toast.makeText(getContext(), ((Track) item).getTitle(), Toast.LENGTH_LONG).show();
+        }
+        if (item instanceof Genres) {
+            if (getFragmentManager() != null) {
+                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+                LoadMoreDialogFragment mDialog = LoadMoreDialogFragment.newInstance((Genres) item);
+                mDialog.show(fragmentTransaction, LoadMoreDialogFragment.TAG);
+            }
+        }
     }
 }
