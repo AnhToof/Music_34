@@ -8,7 +8,7 @@ import java.util.List;
 public interface TrackDataSource {
 
     interface LocalDataSource {
-        void getData(OnGetDataListener<Track> listener);
+        void getData(boolean isGeneral, OnGetDataListener<Track> listener);
     }
 
     interface RemoteDataSource {

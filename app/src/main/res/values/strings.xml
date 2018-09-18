@@ -23,4 +23,7 @@
     <string name="error_local_load_file">Something was wrong. Please try again!</string>
     <string name="error_local_empty_library">No media found</string>
     <string name="play_all">PLAY ALL</string>
+    <string name="unknown">Unknown</string>
+    <string name="permission_granted">Permission Granted</string>
+    <string name="permission_denied">Permission Denied</string>
 </resources>

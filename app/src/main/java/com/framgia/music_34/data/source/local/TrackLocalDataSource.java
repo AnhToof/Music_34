@@ -20,7 +20,7 @@ public class TrackLocalDataSource implements TrackDataSource.LocalDataSource {
     }
 
     @Override
-    public void getData(OnGetDataListener<Track> listener) {
-        listener.onSuccess(mGetDataLocal.getData());
+    public void getData(boolean isGeneral, OnGetDataListener<Track> listener) {
+        listener.onSuccess(mGetDataLocal.getData(isGeneral));
     }
 }
