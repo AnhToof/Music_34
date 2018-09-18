@@ -34,7 +34,7 @@ public class TrackRepository {
         mRemoteDataSource.getListTrack(genres, kind, limit, listener);
     }
 
-    public void getLocalListTrack(OnGetDataListener<Track> listener) {
-        mLocalDataSource.getData(listener);
+    public void getLocalListTrack(boolean isGeneral, OnGetDataListener<Track> listener) {
+        mLocalDataSource.getData(isGeneral, listener);
     }
 }
