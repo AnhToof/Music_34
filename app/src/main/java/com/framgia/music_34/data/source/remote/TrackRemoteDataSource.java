@@ -25,30 +25,7 @@ public class TrackRemoteDataSource implements TrackDataSource.RemoteDataSource {
     }
 
     @Override
-    public void getListTrack(String genres, String kind,
-            final OnFetchDataJsonListener<List<Track>> listener) {
-        String url = setUrl(kind, genres, "");
-        new GetJsonFromUrl(new OnFetchDataTemp() {
-            @Override
-            public void onSuccess(String data) {
-                try {
-                    JSONObject jsonObject = new JSONObject(data);
-                    List<Track> trackList = new ParseDataWithJson().parseJsonToData(jsonObject);
-                    listener.onSuccess(trackList);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void onError(Exception e) {
-                listener.onError(e);
-            }
-        }).execute(url);
-    }
-
-    @Override
-    public void getListTrackMore(String genres, String kind, String limit,
+    public void getListTrack(String genres, String kind, String limit,
             final OnFetchDataJsonListener<List<Track>> listener) {
         String url = setUrl(kind, genres, limit);
         new GetJsonFromUrl(new OnFetchDataTemp() {

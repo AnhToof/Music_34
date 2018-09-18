@@ -13,12 +13,8 @@ public interface TrackDataSource {
 
     interface RemoteDataSource {
 
-        void getListTrack(String genres, String kind,
+        void getListTrack(String genres, String kind, String limit,
                 OnFetchDataJsonListener<List<Track>> listener);
-
-        void getListTrackMore(String genres, String kind, String limit,
-                OnFetchDataJsonListener<List<Track>> listener);
-
         void getTrack(String uri, OnFetchDataJsonListener<Track> listener);
     }
 }

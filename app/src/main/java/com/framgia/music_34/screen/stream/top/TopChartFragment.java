@@ -16,7 +16,7 @@ import com.framgia.music_34.data.source.TrackRepository;
 import com.framgia.music_34.data.source.local.GetDataLocal;
 import com.framgia.music_34.data.source.local.TrackLocalDataSource;
 import com.framgia.music_34.data.source.remote.TrackRemoteDataSource;
-import com.framgia.music_34.screen.stream.load_more.LoadMoreDialogFragment;
+import com.framgia.music_34.screen.stream.load_more.ListTrackDialogFragment;
 import com.framgia.music_34.screen.stream.top.adapter.TopChartGenresAdapter;
 import com.framgia.music_34.utils.OnItemRecyclerViewClickListener;
 
@@ -82,8 +82,8 @@ public class TopChartFragment extends Fragment
         if (item instanceof Genres) {
             if (getFragmentManager() != null) {
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                LoadMoreDialogFragment mDialog = LoadMoreDialogFragment.newInstance((Genres) item);
-                mDialog.show(fragmentTransaction, LoadMoreDialogFragment.TAG);
+                ListTrackDialogFragment mDialog = ListTrackDialogFragment.newInstance((Genres) item);
+                mDialog.show(fragmentTransaction, ListTrackDialogFragment.TAG);
             }
         }
     }
