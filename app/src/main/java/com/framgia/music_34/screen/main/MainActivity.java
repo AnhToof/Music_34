@@ -16,13 +16,19 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import com.framgia.music_34.R;
+import com.framgia.music_34.data.model.Genres;
 import com.framgia.music_34.screen.downloaded.DownloadedFragment;
 import com.framgia.music_34.screen.local.LocalMusicFragment;
 import com.framgia.music_34.screen.stream.StreamMusicFragment;
+import com.framgia.music_34.utils.GenresMusic;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    private static final List<String> mTitleGenres = new ArrayList<>();
+    private static final List<String> mPathGenres = new ArrayList<>();
     private DrawerLayout mDrawerLayout;
     private ImageView mImagePlayCollapse;
     private NavigationView mNavigationView;
@@ -33,6 +39,8 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         initView();
         initVIewBottomSheet();
+        addPathGenres();
+        addTitleGenres();
         setFragment(StreamMusicFragment.newInstance());
         mNavigationView.getMenu().getItem(0).setChecked(true);
     }
@@ -77,6 +85,32 @@ public class MainActivity extends AppCompatActivity
 
             }
         });
+    }
+
+    private void addTitleGenres() {
+        mTitleGenres.add(Genres.GenresEntry.ALL_MUSIC);
+        mTitleGenres.add(Genres.GenresEntry.ALL_AUDIO);
+        mTitleGenres.add(Genres.GenresEntry.ALTERNATIVE_ROCK);
+        mTitleGenres.add(Genres.GenresEntry.AMBIENT);
+        mTitleGenres.add(Genres.GenresEntry.CLASSICAL);
+        mTitleGenres.add(Genres.GenresEntry.COUNTRY);
+    }
+
+    public void addPathGenres() {
+        mPathGenres.add(GenresMusic.ALL_MUSIC);
+        mPathGenres.add(GenresMusic.ALL_AUDIO);
+        mPathGenres.add(GenresMusic.ALTERNATIVE_ROCK);
+        mPathGenres.add(GenresMusic.AMBIENT);
+        mPathGenres.add(GenresMusic.CLASSICAL);
+        mPathGenres.add(GenresMusic.COUNTRY);
+    }
+
+    public static List<String> getTitleGenres() {
+        return mTitleGenres;
+    }
+
+    public static List<String> getPathGenres() {
+        return mPathGenres;
     }
 
     @Override

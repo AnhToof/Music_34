@@ -3,7 +3,6 @@ package com.framgia.music_34.screen.stream.top;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,8 +15,9 @@ import com.framgia.music_34.data.source.TrackRepository;
 import com.framgia.music_34.data.source.local.GetDataLocal;
 import com.framgia.music_34.data.source.local.TrackLocalDataSource;
 import com.framgia.music_34.data.source.remote.TrackRemoteDataSource;
+import com.framgia.music_34.screen.stream.adapter.ChartGenresAdapter;
 import com.framgia.music_34.screen.stream.load_more.ListTrackDialogFragment;
-import com.framgia.music_34.screen.stream.top.adapter.TopChartGenresAdapter;
+import com.framgia.music_34.utils.Navigator;
 import com.framgia.music_34.utils.OnItemRecyclerViewClickListener;
 
 /**
@@ -26,7 +26,8 @@ import com.framgia.music_34.utils.OnItemRecyclerViewClickListener;
 public class TopChartFragment extends Fragment
         implements TopChartContract.View, OnItemRecyclerViewClickListener {
 
-    private TopChartGenresAdapter mAdapter;
+    private ChartGenresAdapter mAdapter;
+    private Navigator mNavigator;
 
     public static TopChartFragment newInstance() {
         return new TopChartFragment();
@@ -42,9 +43,10 @@ public class TopChartFragment extends Fragment
     }
 
     private void initView(View view) {
+        mNavigator = new Navigator();
         RecyclerView recyclerView = view.findViewById(R.id.recycler_genres);
         recyclerView.setHasFixedSize(true);
-        mAdapter = new TopChartGenresAdapter(getContext());
+        mAdapter = new ChartGenresAdapter(getContext());
         recyclerView.setAdapter(mAdapter);
         mAdapter.setOnItemRecyclerViewClickListener(this);
         mAdapter.setListenerTrack(this);
@@ -66,7 +68,7 @@ public class TopChartFragment extends Fragment
 
     @Override
     public void onFetchTrackSuccess(Track track) {
-
+        // TODO: 9/18/2018 Update later
     }
 
     @Override
@@ -77,13 +79,12 @@ public class TopChartFragment extends Fragment
     @Override
     public void onItemClickListener(Object item, int position) {
         if (item instanceof Track) {
-            Toast.makeText(getContext(), ((Track) item).getTitle(), Toast.LENGTH_LONG).show();
+            // TODO: 9/18/2018 Update later
         }
         if (item instanceof Genres) {
             if (getFragmentManager() != null) {
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                ListTrackDialogFragment mDialog = ListTrackDialogFragment.newInstance((Genres) item);
-                mDialog.show(fragmentTransaction, ListTrackDialogFragment.TAG);
+                mNavigator.showListTrackDialog(getFragmentManager(),
+                        ListTrackDialogFragment.newInstance((Genres) item));
             }
         }
     }

@@ -12,6 +12,7 @@ public class Constants {
     public static final String GENRES = "&genre=";
     public static final String CLIENT_ID = "client_id=" + BuildConfig.API_KEY;
     public static final String LIMIT = "&limit=";
+
     @IntDef({ TypeMenuIndex.MENU_INDEX_HOT_NEW, TypeMenuIndex.MENU_INDEX_TOP })
     public @interface TypeMenuIndex {
         int MENU_INDEX_HOT_NEW = 0;

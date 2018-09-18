@@ -1,4 +1,4 @@
-package com.framgia.music_34.screen.stream.top.adapter;
+package com.framgia.music_34.screen.stream.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -15,13 +15,13 @@ import com.framgia.music_34.utils.OnItemRecyclerViewClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TopChartTracksAdapter extends RecyclerView.Adapter<TopChartTracksAdapter.ViewHolder> {
+public class ChartTracksAdapter extends RecyclerView.Adapter<ChartTracksAdapter.ViewHolder> {
 
     private List<Track> mTrackList;
     private Context mContext;
     private OnItemRecyclerViewClickListener<Track> mListener;
 
-    TopChartTracksAdapter(Context context) {
+    ChartTracksAdapter(Context context) {
         mContext = context;
         mTrackList = new ArrayList<>();
     }
