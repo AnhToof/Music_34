@@ -1,4 +1,4 @@
-package com.framgia.music_34.screen.stream.top.adapter;
+package com.framgia.music_34.screen.stream.adapter;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -15,7 +15,7 @@ import com.framgia.music_34.utils.OnItemRecyclerViewClickListener;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TopChartGenresAdapter extends RecyclerView.Adapter<TopChartGenresAdapter.ViewHolder> {
+public class ChartGenresAdapter extends RecyclerView.Adapter<ChartGenresAdapter.ViewHolder> {
 
     private static final int MAX_ITEMS_SHOWED = 10;
 
@@ -24,7 +24,7 @@ public class TopChartGenresAdapter extends RecyclerView.Adapter<TopChartGenresAd
     private OnItemRecyclerViewClickListener<Genres> mListenerGenres;
     private OnItemRecyclerViewClickListener<Track> mListenerTrack;
 
-    public TopChartGenresAdapter(Context context) {
+    public ChartGenresAdapter(Context context) {
         mContext = context;
         mGenresList = new ArrayList<>();
     }
@@ -101,11 +101,11 @@ public class TopChartGenresAdapter extends RecyclerView.Adapter<TopChartGenresAd
 
         void bindViewData(Genres genres) {
             mTextViewGenres.setText(genres.getTitle());
-            TopChartTracksAdapter topChartTracksAdapter = new TopChartTracksAdapter(mContext);
+            ChartTracksAdapter chartTracksAdapter = new ChartTracksAdapter(mContext);
             mRecyclerView.setHasFixedSize(true);
-            mRecyclerView.setAdapter(topChartTracksAdapter);
-            topChartTracksAdapter.setTrackList(setLimitTrack(genres));
-            topChartTracksAdapter.setOnItemRecyclerViewTrackListener(this);
+            mRecyclerView.setAdapter(chartTracksAdapter);
+            chartTracksAdapter.setTrackList(setLimitTrack(genres));
+            chartTracksAdapter.setOnItemRecyclerViewTrackListener(this);
         }
 
         @Override
